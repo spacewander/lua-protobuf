@@ -1321,7 +1321,7 @@ static int Lpb_enum(lua_State *L) {
 static void lpb_newtypetable(lua_State *L, const pb_Type *t, int with_repeat) {
     const pb_Field *f = NULL;
     if (t == NULL) { lua_newtable(L); return; }
-    lua_createtable(L, 0, t->field_count - t->oneof_field + t->oneof_count*2);
+    lua_createtable(L, 0, t->field_count + t->oneof_count);
     if (!with_repeat) return;
     while (pb_nextfield(t, &f)) {
         if (f->repeated) {
